@@ -89,6 +89,9 @@ class MarketplaceApi extends Walmart
         'rules' => [
             Country::US => US\RulesApi::class,
         ],
+        'shipping' => [
+            Country::US => US\ShippingApi::class,
+        ],
         'settings' => [
             Country::US => US\SettingsApi::class,
         ],
