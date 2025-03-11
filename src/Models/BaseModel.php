@@ -247,7 +247,7 @@ abstract class BaseModel implements ArrayAccess, JsonSerializable, ModelInterfac
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -348,7 +348,7 @@ abstract class BaseModel implements ArrayAccess, JsonSerializable, ModelInterfac
      */
     public function __get($propertyName)
     {
-        if (!in_array($propertyName, array_keys(static::$openAPITypes), true)) {
+        if (!in_array($propertyName, array_keys(static::$openAPITypes))) {
             throw new Exception("Trying to access invalid property name '$propertyName'");
         }
 
@@ -366,7 +366,7 @@ abstract class BaseModel implements ArrayAccess, JsonSerializable, ModelInterfac
      */
     public function __set($propertyName, $propertyValue)
     {
-        if (!in_array($propertyName, array_keys(static::$openAPITypes), true)) {
+        if (!in_array($propertyName, array_keys(static::$openAPITypes))) {
             throw new Exception("Trying to set invalid property name '$propertyName'");
         }
 

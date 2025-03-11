@@ -1,0 +1,2677 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Ship With Walmart",
+    "description": "The Ship With Walmart (SWW) APIs enables walmart.com sellers to buy shipping at competitively discounted rates directly from Walmart to ship their goods to US customers.",
+    "version": "1.0.0",
+    "contact": {}
+  },
+  "servers": [
+    {
+      "url": "https://marketplace.walmartapis.com"
+    }
+  ],
+  "paths": {
+    "/v3/shipping/labels/shipping-estimates": {
+      "post": {
+        "tags": [
+          "v3",
+          "shipping",
+          "labels",
+          "shipping-estimates"
+        ],
+        "summary": "Shipping estimates",
+        "description": "This API retrieves shipping cost estimates for available shipping services based on address and package (e.g., customer address, packaged weight.)",
+        "operationId": "shippingEstimates",
+        "parameters": [
+          {
+            "name": "wm_sec.access_token",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "example": "<string>"
+            },
+            "description": "(Required) The access token retrieved in the Token API call"
+          },
+          {
+            "name": "wm_consumer.channel.type",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "example": "<string>"
+            },
+            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding"
+          },
+          {
+            "name": "wm_qos.correlation_id",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "example": "<string>"
+            },
+            "description": "(Required) A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID"
+          },
+          {
+            "name": "wm_svc.name",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "example": "<string>"
+            },
+            "description": "(Required) Walmart Service Name"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "addOns": {
+                    "type": "string",
+                    "example": "<boolean>"
+                  },
+                  "boxDimensions": {
+                    "type": "object",
+                    "properties": {
+                      "boxDimensionUnit": {
+                        "type": "string",
+                        "example": "FT"
+                      },
+                      "boxHeight": {
+                        "type": "string",
+                        "example": "<number>"
+                      },
+                      "boxLength": {
+                        "type": "string",
+                        "example": "<number>"
+                      },
+                      "boxWeight": {
+                        "type": "string",
+                        "example": "<number>"
+                      },
+                      "boxWeightUnit": {
+                        "type": "string",
+                        "example": "KG"
+                      },
+                      "boxWidth": {
+                        "type": "string",
+                        "example": "<number>"
+                      }
+                    }
+                  },
+                  "boxItems": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "lineNumber": {
+                          "type": "string",
+                          "example": "<string>"
+                        },
+                        "quantity": {
+                          "type": "string",
+                          "example": "<integer>"
+                        },
+                        "sku": {
+                          "type": "string",
+                          "example": "<string>"
+                        }
+                      }
+                    },
+                    "example": [
+                      {
+                        "lineNumber": "<string>",
+                        "quantity": "<integer>",
+                        "sku": "<string>"
+                      },
+                      {
+                        "lineNumber": "<string>",
+                        "quantity": "<integer>",
+                        "sku": "<string>"
+                      }
+                    ]
+                  },
+                  "carriers": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "example": "<string>"
+                    },
+                    "example": [
+                      "<string>",
+                      "<string>"
+                    ]
+                  },
+                  "deliverByDate": {
+                    "type": "string",
+                    "example": "<string>"
+                  },
+                  "fromAddress": {
+                    "type": "object",
+                    "properties": {
+                      "addressLines": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "example": "<string>"
+                        },
+                        "example": [
+                          "<string>",
+                          "<string>"
+                        ]
+                      },
+                      "city": {
+                        "type": "string",
+                        "example": "<string>"
+                      },
+                      "countryCode": {
+                        "type": "string",
+                        "example": "<string>"
+                      },
+                      "postalCode": {
+                        "type": "string",
+                        "example": "<string>"
+                      },
+                      "state": {
+                        "type": "string",
+                        "example": "<string>"
+                      }
+                    }
+                  },
+                  "hasBattery": {
+                    "type": "string",
+                    "example": "<boolean>"
+                  },
+                  "includeServicesNotMeetingDeliveryPromise": {
+                    "type": "string",
+                    "example": "<boolean>"
+                  },
+                  "packageType": {
+                    "type": "string",
+                    "example": "<string>"
+                  },
+                  "purchaseOrderId": {
+                    "type": "string",
+                    "example": "<string>"
+                  },
+                  "shipByDate": {
+                    "type": "string",
+                    "example": "<string>"
+                  },
+                  "toAddress": {
+                    "type": "object",
+                    "properties": {
+                      "addressLines": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "example": "<string>"
+                        },
+                        "example": [
+                          "<string>",
+                          "<string>"
+                        ]
+                      },
+                      "city": {
+                        "type": "string",
+                        "example": "<string>"
+                      },
+                      "countryCode": {
+                        "type": "string",
+                        "example": "<string>"
+                      },
+                      "postalCode": {
+                        "type": "string",
+                        "example": "<string>"
+                      },
+                      "state": {
+                        "type": "string",
+                        "example": "<string>"
+                      }
+                    }
+                  }
+                }
+              },
+              "examples": {
+                "Shipping estimates": {
+                  "value": {
+                    "addOns": "<boolean>",
+                    "boxDimensions": {
+                      "boxDimensionUnit": "FT",
+                      "boxHeight": "<number>",
+                      "boxLength": "<number>",
+                      "boxWeight": "<number>",
+                      "boxWeightUnit": "KG",
+                      "boxWidth": "<number>"
+                    },
+                    "boxItems": [
+                      {
+                        "lineNumber": "<string>",
+                        "quantity": "<integer>",
+                        "sku": "<string>"
+                      },
+                      {
+                        "lineNumber": "<string>",
+                        "quantity": "<integer>",
+                        "sku": "<string>"
+                      }
+                    ],
+                    "carriers": [
+                      "<string>",
+                      "<string>"
+                    ],
+                    "deliverByDate": "<string>",
+                    "fromAddress": {
+                      "addressLines": [
+                        "<string>",
+                        "<string>"
+                      ],
+                      "city": "<string>",
+                      "countryCode": "<string>",
+                      "postalCode": "<string>",
+                      "state": "<string>"
+                    },
+                    "hasBattery": "<boolean>",
+                    "includeServicesNotMeetingDeliveryPromise": "<boolean>",
+                    "packageType": "<string>",
+                    "purchaseOrderId": "<string>",
+                    "shipByDate": "<string>",
+                    "toAddress": {
+                      "addressLines": [
+                        "<string>",
+                        "<string>"
+                      ],
+                      "city": "<string>",
+                      "countryCode": "<string>",
+                      "postalCode": "<string>",
+                      "state": "<string>"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "alertMessage": {
+                          "type": "string",
+                          "example": "<string>"
+                        },
+                        "estimates": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "addOns": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "charge": {
+                                      "type": "object",
+                                      "properties": {
+                                        "amount": {
+                                          "type": "string",
+                                          "example": "<number>"
+                                        },
+                                        "currency": {
+                                          "type": "string",
+                                          "example": "NAD"
+                                        }
+                                      }
+                                    },
+                                    "declaredValue": {
+                                      "type": "object",
+                                      "properties": {
+                                        "amount": {
+                                          "type": "string",
+                                          "example": "<number>"
+                                        },
+                                        "currency": {
+                                          "type": "string",
+                                          "example": "MWK"
+                                        }
+                                      }
+                                    },
+                                    "name": {
+                                      "type": "string",
+                                      "example": "INSURANCE"
+                                    },
+                                    "refLink": {
+                                      "type": "string",
+                                      "example": "<string>"
+                                    },
+                                    "status": {
+                                      "type": "string",
+                                      "example": "<string>"
+                                    }
+                                  }
+                                },
+                                "example": [
+                                  {
+                                    "charge": {
+                                      "amount": "<number>",
+                                      "currency": "NAD"
+                                    },
+                                    "declaredValue": {
+                                      "amount": "<number>",
+                                      "currency": "MWK"
+                                    },
+                                    "name": "INSURANCE",
+                                    "refLink": "<string>",
+                                    "status": "<string>"
+                                  },
+                                  {
+                                    "charge": {
+                                      "amount": "<number>",
+                                      "currency": "ETB"
+                                    },
+                                    "declaredValue": {
+                                      "amount": "<number>",
+                                      "currency": "BYR"
+                                    },
+                                    "name": "SIGNATURE",
+                                    "refLink": "<string>",
+                                    "status": "<string>"
+                                  }
+                                ]
+                              },
+                              "carrierDisplayName": {
+                                "type": "string",
+                                "example": "<string>"
+                              },
+                              "carrierName": {
+                                "type": "string",
+                                "example": "<string>"
+                              },
+                              "deliveryDate": {
+                                "type": "string",
+                                "example": "<string>"
+                              },
+                              "displayName": {
+                                "type": "string",
+                                "example": "<string>"
+                              },
+                              "estimatedRate": {
+                                "type": "object",
+                                "properties": {
+                                  "amount": {
+                                    "type": "string",
+                                    "example": "<number>"
+                                  },
+                                  "currency": {
+                                    "type": "string",
+                                    "example": "CZK"
+                                  }
+                                }
+                              },
+                              "isDeliveryPromiseFulfilled": {
+                                "type": "string",
+                                "example": "<boolean>"
+                              },
+                              "name": {
+                                "type": "string",
+                                "example": "<string>"
+                              },
+                              "serviceTypeGroupDisplayName": {
+                                "type": "string",
+                                "example": "<string>"
+                              },
+                              "serviceTypeGroupName": {
+                                "type": "string",
+                                "example": "<string>"
+                              }
+                            }
+                          },
+                          "example": [
+                            {
+                              "addOns": [
+                                {
+                                  "charge": {
+                                    "amount": "<number>",
+                                    "currency": "NAD"
+                                  },
+                                  "declaredValue": {
+                                    "amount": "<number>",
+                                    "currency": "MWK"
+                                  },
+                                  "name": "INSURANCE",
+                                  "refLink": "<string>",
+                                  "status": "<string>"
+                                },
+                                {
+                                  "charge": {
+                                    "amount": "<number>",
+                                    "currency": "ETB"
+                                  },
+                                  "declaredValue": {
+                                    "amount": "<number>",
+                                    "currency": "BYR"
+                                  },
+                                  "name": "SIGNATURE",
+                                  "refLink": "<string>",
+                                  "status": "<string>"
+                                }
+                              ],
+                              "carrierDisplayName": "<string>",
+                              "carrierName": "<string>",
+                              "deliveryDate": "<string>",
+                              "displayName": "<string>",
+                              "estimatedRate": {
+                                "amount": "<number>",
+                                "currency": "CZK"
+                              },
+                              "isDeliveryPromiseFulfilled": "<boolean>",
+                              "name": "<string>",
+                              "serviceTypeGroupDisplayName": "<string>",
+                              "serviceTypeGroupName": "<string>"
+                            },
+                            {
+                              "addOns": [
+                                {
+                                  "charge": {
+                                    "amount": "<number>",
+                                    "currency": "XPD"
+                                  },
+                                  "declaredValue": {
+                                    "amount": "<number>",
+                                    "currency": "KPW"
+                                  },
+                                  "name": "SIGNATURE",
+                                  "refLink": "<string>",
+                                  "status": "<string>"
+                                },
+                                {
+                                  "charge": {
+                                    "amount": "<number>",
+                                    "currency": "XBC"
+                                  },
+                                  "declaredValue": {
+                                    "amount": "<number>",
+                                    "currency": "AUD"
+                                  },
+                                  "name": "SIGNATURE",
+                                  "refLink": "<string>",
+                                  "status": "<string>"
+                                }
+                              ],
+                              "carrierDisplayName": "<string>",
+                              "carrierName": "<string>",
+                              "deliveryDate": "<string>",
+                              "displayName": "<string>",
+                              "estimatedRate": {
+                                "amount": "<number>",
+                                "currency": "SYP"
+                              },
+                              "isDeliveryPromiseFulfilled": "<boolean>",
+                              "name": "<string>",
+                              "serviceTypeGroupDisplayName": "<string>",
+                              "serviceTypeGroupName": "<string>"
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "category": {
+                            "type": "string",
+                            "example": "DATA"
+                          },
+                          "code": {
+                            "type": "string",
+                            "example": "<string>"
+                          },
+                          "description": {
+                            "type": "string",
+                            "example": "<string>"
+                          },
+                          "field": {
+                            "type": "string",
+                            "example": "<string>"
+                          },
+                          "httpStatus": {
+                            "type": "string",
+                            "example": "<integer>"
+                          },
+                          "info": {
+                            "type": "string",
+                            "example": "<string>"
+                          },
+                          "severity": {
+                            "type": "string",
+                            "example": "EMERG"
+                          }
+                        }
+                      },
+                      "example": [
+                        {
+                          "category": "DATA",
+                          "code": "<string>",
+                          "description": "<string>",
+                          "field": "<string>",
+                          "httpStatus": "<integer>",
+                          "info": "<string>",
+                          "severity": "EMERG"
+                        },
+                        {
+                          "category": "REQUEST",
+                          "code": "<string>",
+                          "description": "<string>",
+                          "field": "<string>",
+                          "httpStatus": "<integer>",
+                          "info": "<string>",
+                          "severity": "ALERT"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "Successful Operation": {
+                    "value": {
+                      "data": {
+                        "alertMessage": "<string>",
+                        "estimates": [
+                          {
+                            "addOns": [
+                              {
+                                "charge": {
+                                  "amount": "<number>",
+                                  "currency": "NAD"
+                                },
+                                "declaredValue": {
+                                  "amount": "<number>",
+                                  "currency": "MWK"
+                                },
+                                "name": "INSURANCE",
+                                "refLink": "<string>",
+                                "status": "<string>"
+                              },
+                              {
+                                "charge": {
+                                  "amount": "<number>",
+                                  "currency": "ETB"
+                                },
+                                "declaredValue": {
+                                  "amount": "<number>",
+                                  "currency": "BYR"
+                                },
+                                "name": "SIGNATURE",
+                                "refLink": "<string>",
+                                "status": "<string>"
+                              }
+                            ],
+                            "carrierDisplayName": "<string>",
+                            "carrierName": "<string>",
+                            "deliveryDate": "<string>",
+                            "displayName": "<string>",
+                            "estimatedRate": {
+                              "amount": "<number>",
+                              "currency": "CZK"
+                            },
+                            "isDeliveryPromiseFulfilled": "<boolean>",
+                            "name": "<string>",
+                            "serviceTypeGroupDisplayName": "<string>",
+                            "serviceTypeGroupName": "<string>"
+                          },
+                          {
+                            "addOns": [
+                              {
+                                "charge": {
+                                  "amount": "<number>",
+                                  "currency": "XPD"
+                                },
+                                "declaredValue": {
+                                  "amount": "<number>",
+                                  "currency": "KPW"
+                                },
+                                "name": "SIGNATURE",
+                                "refLink": "<string>",
+                                "status": "<string>"
+                              },
+                              {
+                                "charge": {
+                                  "amount": "<number>",
+                                  "currency": "XBC"
+                                },
+                                "declaredValue": {
+                                  "amount": "<number>",
+                                  "currency": "AUD"
+                                },
+                                "name": "SIGNATURE",
+                                "refLink": "<string>",
+                                "status": "<string>"
+                              }
+                            ],
+                            "carrierDisplayName": "<string>",
+                            "carrierName": "<string>",
+                            "deliveryDate": "<string>",
+                            "displayName": "<string>",
+                            "estimatedRate": {
+                              "amount": "<number>",
+                              "currency": "SYP"
+                            },
+                            "isDeliveryPromiseFulfilled": "<boolean>",
+                            "name": "<string>",
+                            "serviceTypeGroupDisplayName": "<string>",
+                            "serviceTypeGroupName": "<string>"
+                          }
+                        ]
+                      },
+                      "errors": [
+                        {
+                          "category": "DATA",
+                          "code": "<string>",
+                          "description": "<string>",
+                          "field": "<string>",
+                          "httpStatus": "<integer>",
+                          "info": "<string>",
+                          "severity": "EMERG"
+                        },
+                        {
+                          "category": "REQUEST",
+                          "code": "<string>",
+                          "description": "<string>",
+                          "field": "<string>",
+                          "httpStatus": "<integer>",
+                          "info": "<string>",
+                          "severity": "ALERT"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/shipping/labels/purchase-orders/{purchaseOrderId}": {
+      "get": {
+        "tags": [
+          "v3",
+          "shipping",
+          "labels",
+          "purchase-orders",
+          "{purchaseOrderId}"
+        ],
+        "summary": "Labels detail by purchase order id",
+        "description": "This API retrieves all label details generated for a purchase order id.",
+        "operationId": "labelsDetailByPurchaseOrderId",
+        "parameters": [
+          {
+            "name": "wm_sec.access_token",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "example": "<string>"
+            },
+            "description": "(Required) The access token retrieved in the Token API call"
+          },
+          {
+            "name": "wm_consumer.channel.type",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "example": "<string>"
+            },
+            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding"
+          },
+          {
+            "name": "wm_qos.correlation_id",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "example": "<string>"
+            },
+            "description": "(Required) A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID"
+          },
+          {
+            "name": "wm_svc.name",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "example": "<string>"
+            },
+            "description": "(Required) Walmart Service Name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "addOns": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "charge": {
+                                  "type": "object",
+                                  "properties": {
+                                    "amount": {
+                                      "type": "string",
+                                      "example": "<number>"
+                                    },
+                                    "currency": {
+                                      "type": "string",
+                                      "example": "RUR"
+                                    }
+                                  }
+                                },
+                                "declaredValue": {
+                                  "type": "object",
+                                  "properties": {
+                                    "amount": {
+                                      "type": "string",
+                                      "example": "<number>"
+                                    },
+                                    "currency": {
+                                      "type": "string",
+                                      "example": "XDR"
+                                    }
+                                  }
+                                },
+                                "name": {
+                                  "type": "string",
+                                  "example": "SIGNATURE"
+                                },
+                                "refLink": {
+                                  "type": "string",
+                                  "example": "<string>"
+                                },
+                                "status": {
+                                  "type": "string",
+                                  "example": "<string>"
+                                }
+                              }
+                            },
+                            "example": [
+                              {
+                                "charge": {
+                                  "amount": "<number>",
+                                  "currency": "RUR"
+                                },
+                                "declaredValue": {
+                                  "amount": "<number>",
+                                  "currency": "XDR"
+                                },
+                                "name": "SIGNATURE",
+                                "refLink": "<string>",
+                                "status": "<string>"
+                              },
+                              {
+                                "charge": {
+                                  "amount": "<number>",
+                                  "currency": "BDT"
+                                },
+                                "declaredValue": {
+                                  "amount": "<number>",
+                                  "currency": "SZL"
+                                },
+                                "name": "SIGNATURE",
+                                "refLink": "<string>",
+                                "status": "<string>"
+                              }
+                            ]
+                          },
+                          "boxItems": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "countryOfOrigin": {
+                                  "type": "string",
+                                  "example": "<string>"
+                                },
+                                "hsCode": {
+                                  "type": "string",
+                                  "example": "<string>"
+                                },
+                                "lineNumber": {
+                                  "type": "string",
+                                  "example": "<string>"
+                                },
+                                "originCity": {
+                                  "type": "string",
+                                  "example": "<string>"
+                                },
+                                "originState": {
+                                  "type": "string",
+                                  "example": "<string>"
+                                },
+                                "productName": {
+                                  "type": "string",
+                                  "example": "<string>"
+                                },
+                                "productNameInLocale": {
+                                  "type": "string",
+                                  "example": "<string>"
+                                },
+                                "quantity": {
+                                  "type": "string",
+                                  "example": "<integer>"
+                                },
+                                "sku": {
+                                  "type": "string",
+                                  "example": "<string>"
+                                }
+                              }
+                            },
+                            "example": [
+                              {
+                                "countryOfOrigin": "<string>",
+                                "hsCode": "<string>",
+                                "lineNumber": "<string>",
+                                "originCity": "<string>",
+                                "originState": "<string>",
+                                "productName": "<string>",
+                                "productNameInLocale": "<string>",
+                                "quantity": "<integer>",
+                                "sku": "<string>"
+                              },
+                              {
+                                "countryOfOrigin": "<string>",
+                                "hsCode": "<string>",
+                                "lineNumber": "<string>",
+                                "originCity": "<string>",
+                                "originState": "<string>",
+                                "productName": "<string>",
+                                "productNameInLocale": "<string>",
+                                "quantity": "<integer>",
+                                "sku": "<string>"
+                              }
+                            ]
+                          },
+                          "carrierFullName": {
+                            "type": "string",
+                            "example": "<string>"
+                          },
+                          "carrierName": {
+                            "type": "string",
+                            "example": "<string>"
+                          },
+                          "carrierServiceType": {
+                            "type": "string",
+                            "example": "<string>"
+                          },
+                          "purchaseOrderId": {
+                            "type": "string",
+                            "example": "<string>"
+                          },
+                          "trackingNo": {
+                            "type": "string",
+                            "example": "<string>"
+                          },
+                          "trackingUrl": {
+                            "type": "string",
+                            "example": "<string>"
+                          }
+                        }
+                      },
+                      "example": [
+                        {
+                          "addOns": [
+                            {
+                              "charge": {
+                                "amount": "<number>",
+                                "currency": "RUR"
+                              },
+                              "declaredValue": {
+                                "amount": "<number>",
+                                "currency": "XDR"
+                              },
+                              "name": "SIGNATURE",
+                              "refLink": "<string>",
+                              "status": "<string>"
+                            },
+                            {
+                              "charge": {
+                                "amount": "<number>",
+                                "currency": "BDT"
+                              },
+                              "declaredValue": {
+                                "amount": "<number>",
+                                "currency": "SZL"
+                              },
+                              "name": "SIGNATURE",
+                              "refLink": "<string>",
+                              "status": "<string>"
+                            }
+                          ],
+                          "boxItems": [
+                            {
+                              "countryOfOrigin": "<string>",
+                              "hsCode": "<string>",
+                              "lineNumber": "<string>",
+                              "originCity": "<string>",
+                              "originState": "<string>",
+                              "productName": "<string>",
+                              "productNameInLocale": "<string>",
+                              "quantity": "<integer>",
+                              "sku": "<string>"
+                            },
+                            {
+                              "countryOfOrigin": "<string>",
+                              "hsCode": "<string>",
+                              "lineNumber": "<string>",
+                              "originCity": "<string>",
+                              "originState": "<string>",
+                              "productName": "<string>",
+                              "productNameInLocale": "<string>",
+                              "quantity": "<integer>",
+                              "sku": "<string>"
+                            }
+                          ],
+                          "carrierFullName": "<string>",
+                          "carrierName": "<string>",
+                          "carrierServiceType": "<string>",
+                          "purchaseOrderId": "<string>",
+                          "trackingNo": "<string>",
+                          "trackingUrl": "<string>"
+                        },
+                        {
+                          "addOns": [
+                            {
+                              "charge": {
+                                "amount": "<number>",
+                                "currency": "ANG"
+                              },
+                              "declaredValue": {
+                                "amount": "<number>",
+                                "currency": "DKK"
+                              },
+                              "name": "INSURANCE",
+                              "refLink": "<string>",
+                              "status": "<string>"
+                            },
+                            {
+                              "charge": {
+                                "amount": "<number>",
+                                "currency": "SEK"
+                              },
+                              "declaredValue": {
+                                "amount": "<number>",
+                                "currency": "BBD"
+                              },
+                              "name": "INSURANCE",
+                              "refLink": "<string>",
+                              "status": "<string>"
+                            }
+                          ],
+                          "boxItems": [
+                            {
+                              "countryOfOrigin": "<string>",
+                              "hsCode": "<string>",
+                              "lineNumber": "<string>",
+                              "originCity": "<string>",
+                              "originState": "<string>",
+                              "productName": "<string>",
+                              "productNameInLocale": "<string>",
+                              "quantity": "<integer>",
+                              "sku": "<string>"
+                            },
+                            {
+                              "countryOfOrigin": "<string>",
+                              "hsCode": "<string>",
+                              "lineNumber": "<string>",
+                              "originCity": "<string>",
+                              "originState": "<string>",
+                              "productName": "<string>",
+                              "productNameInLocale": "<string>",
+                              "quantity": "<integer>",
+                              "sku": "<string>"
+                            }
+                          ],
+                          "carrierFullName": "<string>",
+                          "carrierName": "<string>",
+                          "carrierServiceType": "<string>",
+                          "purchaseOrderId": "<string>",
+                          "trackingNo": "<string>",
+                          "trackingUrl": "<string>"
+                        }
+                      ]
+                    },
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "category": {
+                            "type": "string",
+                            "example": "SERVICE"
+                          },
+                          "code": {
+                            "type": "string",
+                            "example": "<string>"
+                          },
+                          "description": {
+                            "type": "string",
+                            "example": "<string>"
+                          },
+                          "field": {
+                            "type": "string",
+                            "example": "<string>"
+                          },
+                          "httpStatus": {
+                            "type": "string",
+                            "example": "<integer>"
+                          },
+                          "info": {
+                            "type": "string",
+                            "example": "<string>"
+                          },
+                          "severity": {
+                            "type": "string",
+                            "example": "ERROR"
+                          }
+                        }
+                      },
+                      "example": [
+                        {
+                          "category": "SERVICE",
+                          "code": "<string>",
+                          "description": "<string>",
+                          "field": "<string>",
+                          "httpStatus": "<integer>",
+                          "info": "<string>",
+                          "severity": "ERROR"
+                        },
+                        {
+                          "category": "REQUEST",
+                          "code": "<string>",
+                          "description": "<string>",
+                          "field": "<string>",
+                          "httpStatus": "<integer>",
+                          "info": "<string>",
+                          "severity": "CRITICAL"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "Successful Operation": {
+                    "value": {
+                      "data": [
+                        {
+                          "addOns": [
+                            {
+                              "charge": {
+                                "amount": "<number>",
+                                "currency": "RUR"
+                              },
+                              "declaredValue": {
+                                "amount": "<number>",
+                                "currency": "XDR"
+                              },
+                              "name": "SIGNATURE",
+                              "refLink": "<string>",
+                              "status": "<string>"
+                            },
+                            {
+                              "charge": {
+                                "amount": "<number>",
+                                "currency": "BDT"
+                              },
+                              "declaredValue": {
+                                "amount": "<number>",
+                                "currency": "SZL"
+                              },
+                              "name": "SIGNATURE",
+                              "refLink": "<string>",
+                              "status": "<string>"
+                            }
+                          ],
+                          "boxItems": [
+                            {
+                              "countryOfOrigin": "<string>",
+                              "hsCode": "<string>",
+                              "lineNumber": "<string>",
+                              "originCity": "<string>",
+                              "originState": "<string>",
+                              "productName": "<string>",
+                              "productNameInLocale": "<string>",
+                              "quantity": "<integer>",
+                              "sku": "<string>"
+                            },
+                            {
+                              "countryOfOrigin": "<string>",
+                              "hsCode": "<string>",
+                              "lineNumber": "<string>",
+                              "originCity": "<string>",
+                              "originState": "<string>",
+                              "productName": "<string>",
+                              "productNameInLocale": "<string>",
+                              "quantity": "<integer>",
+                              "sku": "<string>"
+                            }
+                          ],
+                          "carrierFullName": "<string>",
+                          "carrierName": "<string>",
+                          "carrierServiceType": "<string>",
+                          "purchaseOrderId": "<string>",
+                          "trackingNo": "<string>",
+                          "trackingUrl": "<string>"
+                        },
+                        {
+                          "addOns": [
+                            {
+                              "charge": {
+                                "amount": "<number>",
+                                "currency": "ANG"
+                              },
+                              "declaredValue": {
+                                "amount": "<number>",
+                                "currency": "DKK"
+                              },
+                              "name": "INSURANCE",
+                              "refLink": "<string>",
+                              "status": "<string>"
+                            },
+                            {
+                              "charge": {
+                                "amount": "<number>",
+                                "currency": "SEK"
+                              },
+                              "declaredValue": {
+                                "amount": "<number>",
+                                "currency": "BBD"
+                              },
+                              "name": "INSURANCE",
+                              "refLink": "<string>",
+                              "status": "<string>"
+                            }
+                          ],
+                          "boxItems": [
+                            {
+                              "countryOfOrigin": "<string>",
+                              "hsCode": "<string>",
+                              "lineNumber": "<string>",
+                              "originCity": "<string>",
+                              "originState": "<string>",
+                              "productName": "<string>",
+                              "productNameInLocale": "<string>",
+                              "quantity": "<integer>",
+                              "sku": "<string>"
+                            },
+                            {
+                              "countryOfOrigin": "<string>",
+                              "hsCode": "<string>",
+                              "lineNumber": "<string>",
+                              "originCity": "<string>",
+                              "originState": "<string>",
+                              "productName": "<string>",
+                              "productNameInLocale": "<string>",
+                              "quantity": "<integer>",
+                              "sku": "<string>"
+                            }
+                          ],
+                          "carrierFullName": "<string>",
+                          "carrierName": "<string>",
+                          "carrierServiceType": "<string>",
+                          "purchaseOrderId": "<string>",
+                          "trackingNo": "<string>",
+                          "trackingUrl": "<string>"
+                        }
+                      ],
+                      "errors": [
+                        {
+                          "category": "SERVICE",
+                          "code": "<string>",
+                          "description": "<string>",
+                          "field": "<string>",
+                          "httpStatus": "<integer>",
+                          "info": "<string>",
+                          "severity": "ERROR"
+                        },
+                        {
+                          "category": "REQUEST",
+                          "code": "<string>",
+                          "description": "<string>",
+                          "field": "<string>",
+                          "httpStatus": "<integer>",
+                          "info": "<string>",
+                          "severity": "CRITICAL"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "purchaseOrderId",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "example": "<string>"
+          },
+          "description": "(Required) purchaseOrderId"
+        }
+      ]
+    },
+    "/v3/shipping/labels/carriers/{carrierShortName}/trackings/{trackingNo}": {
+      "get": {
+        "tags": [
+          "v3",
+          "shipping",
+          "labels",
+          "carriers",
+          "{carrierShortName}",
+          "trackings",
+          "{trackingNo}"
+        ],
+        "summary": "Download label",
+        "description": "This API retrieves label for a carrier & tracking number combination.The response to a successful call contains the tracking number with the pdf or image type based on the media type passed in Accept header.\nFor eg. 'Accept'='application/json,application/pdf' will result in pdf media type and\n'Accept'='application/json,image/png' as image media type.",
+        "operationId": "downloadLabel",
+        "parameters": [
+          {
+            "name": "wm_sec.access_token",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "example": "<string>"
+            },
+            "description": "(Required) The access token retrieved in the Token API call"
+          },
+          {
+            "name": "wm_consumer.channel.type",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "example": "<string>"
+            },
+            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding"
+          },
+          {
+            "name": "wm_qos.correlation_id",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "example": "<string>"
+            },
+            "description": "(Required) A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID"
+          },
+          {
+            "name": "wm_svc.name",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "example": "<string>"
+            },
+            "description": "(Required) Walmart Service Name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "text/plain": {
+                "examples": {
+                  "Successful Operation": {
+                    "value": "<binary>"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "v3",
+          "shipping",
+          "labels",
+          "carriers",
+          "{carrierShortName}",
+          "trackings",
+          "{trackingNo}"
+        ],
+        "summary": "Discard label",
+        "description": "This API marks a generated label as discarded.",
+        "operationId": "discardLabel",
+        "parameters": [
+          {
+            "name": "wm_sec.access_token",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "example": "<string>"
+            },
+            "description": "(Required) The access token retrieved in the Token API call"
+          },
+          {
+            "name": "wm_consumer.channel.type",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "example": "<string>"
+            },
+            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding"
+          },
+          {
+            "name": "wm_qos.correlation_id",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "example": "<string>"
+            },
+            "description": "(Required) A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID"
+          },
+          {
+            "name": "wm_svc.name",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "example": "<string>"
+            },
+            "description": "(Required) Walmart Service Name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "string",
+                      "example": "<boolean>"
+                    },
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "category": {
+                            "type": "string",
+                            "example": "SERVICE"
+                          },
+                          "code": {
+                            "type": "string",
+                            "example": "<string>"
+                          },
+                          "description": {
+                            "type": "string",
+                            "example": "<string>"
+                          },
+                          "field": {
+                            "type": "string",
+                            "example": "<string>"
+                          },
+                          "httpStatus": {
+                            "type": "string",
+                            "example": "<integer>"
+                          },
+                          "info": {
+                            "type": "string",
+                            "example": "<string>"
+                          },
+                          "severity": {
+                            "type": "string",
+                            "example": "EMERG"
+                          }
+                        }
+                      },
+                      "example": [
+                        {
+                          "category": "SERVICE",
+                          "code": "<string>",
+                          "description": "<string>",
+                          "field": "<string>",
+                          "httpStatus": "<integer>",
+                          "info": "<string>",
+                          "severity": "EMERG"
+                        },
+                        {
+                          "category": "DATA",
+                          "code": "<string>",
+                          "description": "<string>",
+                          "field": "<string>",
+                          "httpStatus": "<integer>",
+                          "info": "<string>",
+                          "severity": "CRITICAL"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "Successful Operation": {
+                    "value": {
+                      "data": "<boolean>",
+                      "errors": [
+                        {
+                          "category": "SERVICE",
+                          "code": "<string>",
+                          "description": "<string>",
+                          "field": "<string>",
+                          "httpStatus": "<integer>",
+                          "info": "<string>",
+                          "severity": "EMERG"
+                        },
+                        {
+                          "category": "DATA",
+                          "code": "<string>",
+                          "description": "<string>",
+                          "field": "<string>",
+                          "httpStatus": "<integer>",
+                          "info": "<string>",
+                          "severity": "CRITICAL"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "carrierShortName",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "example": "<string>"
+          },
+          "description": "(Required) carrierShortName from getCarriers API"
+        },
+        {
+          "name": "trackingNo",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "example": "<string>"
+          },
+          "description": "(Required) trackingNo"
+        }
+      ]
+    },
+    "/v3/shipping/labels/carriers/{carrierShortName}/package-types": {
+      "get": {
+        "tags": [
+          "v3",
+          "shipping",
+          "labels",
+          "carriers",
+          "{carrierShortName}",
+          "package-types"
+        ],
+        "summary": "Supported carrier package types",
+        "description": "This API retrieves all supported package types for the selected carrier.",
+        "operationId": "supportedCarrierPackageTypes",
+        "parameters": [
+          {
+            "name": "wm_sec.access_token",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "example": "<string>"
+            },
+            "description": "(Required) The access token retrieved in the Token API call"
+          },
+          {
+            "name": "wm_consumer.channel.type",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "example": "<string>"
+            },
+            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding"
+          },
+          {
+            "name": "wm_qos.correlation_id",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "example": "<string>"
+            },
+            "description": "(Required) A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID"
+          },
+          {
+            "name": "wm_svc.name",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "example": "<string>"
+            },
+            "description": "(Required) Walmart Service Name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "dimensionUnit": {
+                            "type": "string",
+                            "example": "<string>"
+                          },
+                          "height": {
+                            "type": "string",
+                            "example": "<integer>"
+                          },
+                          "id": {
+                            "type": "string",
+                            "example": "<string>"
+                          },
+                          "length": {
+                            "type": "string",
+                            "example": "<integer>"
+                          },
+                          "packageTypeDisplayName": {
+                            "type": "string",
+                            "example": "<string>"
+                          },
+                          "packageTypeShortName": {
+                            "type": "string",
+                            "example": "<string>"
+                          },
+                          "width": {
+                            "type": "string",
+                            "example": "<integer>"
+                          }
+                        }
+                      },
+                      "example": [
+                        {
+                          "dimensionUnit": "<string>",
+                          "height": "<integer>",
+                          "id": "<string>",
+                          "length": "<integer>",
+                          "packageTypeDisplayName": "<string>",
+                          "packageTypeShortName": "<string>",
+                          "width": "<integer>"
+                        },
+                        {
+                          "dimensionUnit": "<string>",
+                          "height": "<integer>",
+                          "id": "<string>",
+                          "length": "<integer>",
+                          "packageTypeDisplayName": "<string>",
+                          "packageTypeShortName": "<string>",
+                          "width": "<integer>"
+                        }
+                      ]
+                    },
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "category": {
+                            "type": "string",
+                            "example": "SERVICE"
+                          },
+                          "code": {
+                            "type": "string",
+                            "example": "<string>"
+                          },
+                          "description": {
+                            "type": "string",
+                            "example": "<string>"
+                          },
+                          "field": {
+                            "type": "string",
+                            "example": "<string>"
+                          },
+                          "httpStatus": {
+                            "type": "string",
+                            "example": "<integer>"
+                          },
+                          "info": {
+                            "type": "string",
+                            "example": "<string>"
+                          },
+                          "severity": {
+                            "type": "string",
+                            "example": "EMERG"
+                          }
+                        }
+                      },
+                      "example": [
+                        {
+                          "category": "SERVICE",
+                          "code": "<string>",
+                          "description": "<string>",
+                          "field": "<string>",
+                          "httpStatus": "<integer>",
+                          "info": "<string>",
+                          "severity": "EMERG"
+                        },
+                        {
+                          "category": "DATA",
+                          "code": "<string>",
+                          "description": "<string>",
+                          "field": "<string>",
+                          "httpStatus": "<integer>",
+                          "info": "<string>",
+                          "severity": "ERROR"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "Successful Operation": {
+                    "value": {
+                      "data": [
+                        {
+                          "dimensionUnit": "<string>",
+                          "height": "<integer>",
+                          "id": "<string>",
+                          "length": "<integer>",
+                          "packageTypeDisplayName": "<string>",
+                          "packageTypeShortName": "<string>",
+                          "width": "<integer>"
+                        },
+                        {
+                          "dimensionUnit": "<string>",
+                          "height": "<integer>",
+                          "id": "<string>",
+                          "length": "<integer>",
+                          "packageTypeDisplayName": "<string>",
+                          "packageTypeShortName": "<string>",
+                          "width": "<integer>"
+                        }
+                      ],
+                      "errors": [
+                        {
+                          "category": "SERVICE",
+                          "code": "<string>",
+                          "description": "<string>",
+                          "field": "<string>",
+                          "httpStatus": "<integer>",
+                          "info": "<string>",
+                          "severity": "EMERG"
+                        },
+                        {
+                          "category": "DATA",
+                          "code": "<string>",
+                          "description": "<string>",
+                          "field": "<string>",
+                          "httpStatus": "<integer>",
+                          "info": "<string>",
+                          "severity": "ERROR"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "carrierShortName",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "example": "<string>"
+          },
+          "description": "(Required) carrierShortName fetched from carrier API response or pass 'ALL' to fetch all package types of supported carriers"
+        }
+      ]
+    },
+    "/v3/shipping/labels/carriers": {
+      "get": {
+        "tags": [
+          "v3",
+          "shipping",
+          "labels",
+          "carriers"
+        ],
+        "summary": "Supported carriers",
+        "description": "This API retrieves all carriers supported by Ship With Walmart.",
+        "operationId": "supportedCarriers",
+        "parameters": [
+          {
+            "name": "wm_sec.access_token",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "example": "<string>"
+            },
+            "description": "(Required) The access token retrieved in the Token API call"
+          },
+          {
+            "name": "wm_consumer.channel.type",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "example": "<string>"
+            },
+            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding"
+          },
+          {
+            "name": "wm_qos.correlation_id",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "example": "<string>"
+            },
+            "description": "(Required) A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID"
+          },
+          {
+            "name": "wm_svc.name",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "example": "<string>"
+            },
+            "description": "(Required) Walmart Service Name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "carriers": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "carrierId": {
+                            "type": "string",
+                            "example": "<string>"
+                          },
+                          "carrierName": {
+                            "type": "string",
+                            "example": "<string>"
+                          },
+                          "shortName": {
+                            "type": "string",
+                            "example": "<string>"
+                          }
+                        }
+                      },
+                      "example": [
+                        {
+                          "carrierId": "<string>",
+                          "carrierName": "<string>",
+                          "shortName": "<string>"
+                        },
+                        {
+                          "carrierId": "<string>",
+                          "carrierName": "<string>",
+                          "shortName": "<string>"
+                        }
+                      ]
+                    },
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "category": {
+                            "type": "string",
+                            "example": "DATA"
+                          },
+                          "code": {
+                            "type": "string",
+                            "example": "<string>"
+                          },
+                          "description": {
+                            "type": "string",
+                            "example": "<string>"
+                          },
+                          "field": {
+                            "type": "string",
+                            "example": "<string>"
+                          },
+                          "httpStatus": {
+                            "type": "string",
+                            "example": "<integer>"
+                          },
+                          "info": {
+                            "type": "string",
+                            "example": "<string>"
+                          },
+                          "severity": {
+                            "type": "string",
+                            "example": "CRITICAL"
+                          }
+                        }
+                      },
+                      "example": [
+                        {
+                          "category": "DATA",
+                          "code": "<string>",
+                          "description": "<string>",
+                          "field": "<string>",
+                          "httpStatus": "<integer>",
+                          "info": "<string>",
+                          "severity": "CRITICAL"
+                        },
+                        {
+                          "category": "SERVICE",
+                          "code": "<string>",
+                          "description": "<string>",
+                          "field": "<string>",
+                          "httpStatus": "<integer>",
+                          "info": "<string>",
+                          "severity": "WARN"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "Successful Operation": {
+                    "value": {
+                      "carriers": [
+                        {
+                          "carrierId": "<string>",
+                          "carrierName": "<string>",
+                          "shortName": "<string>"
+                        },
+                        {
+                          "carrierId": "<string>",
+                          "carrierName": "<string>",
+                          "shortName": "<string>"
+                        }
+                      ],
+                      "errors": [
+                        {
+                          "category": "DATA",
+                          "code": "<string>",
+                          "description": "<string>",
+                          "field": "<string>",
+                          "httpStatus": "<integer>",
+                          "info": "<string>",
+                          "severity": "CRITICAL"
+                        },
+                        {
+                          "category": "SERVICE",
+                          "code": "<string>",
+                          "description": "<string>",
+                          "field": "<string>",
+                          "httpStatus": "<integer>",
+                          "info": "<string>",
+                          "severity": "WARN"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/shipping/labels": {
+      "post": {
+        "tags": [
+          "v3",
+          "shipping",
+          "labels"
+        ],
+        "summary": "Create label",
+        "description": "This API generates shipping labels with the shipment info passed. The response to a successful call contains the tracking number with the pdf or image type based on the media type passed in Accept header.\nFor eg. 'Accept'='application/json,application/pdf' will result in pdf media type,\n'Accept'='application/json,image/png' as image png media type and 'Accept'='application/json' as json response.\n\n*   Refer request sample1 for United-States(US) to United-States(US) shipping.\n*   Refer request sample2 for United-States(US) to United-States(US) shipping with addons.\n*   Refer request sample3 for China(CN) to United-States(US) shipping.\n*   Refer request sample4 for BYOA.\n",
+        "operationId": "createLabel",
+        "parameters": [
+          {
+            "name": "wm_sec.access_token",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "example": "<string>"
+            },
+            "description": "(Required) The access token retrieved in the Token API call"
+          },
+          {
+            "name": "wm_consumer.channel.type",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "example": "<string>"
+            },
+            "description": "A unique ID to track the consumer request by channel. Use the Consumer Channel Type received during onboarding"
+          },
+          {
+            "name": "wm_qos.correlation_id",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "example": "<string>"
+            },
+            "description": "(Required) A unique ID which identifies each API call and used to track and debug issues; use a random generated GUID for this ID"
+          },
+          {
+            "name": "wm_svc.name",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "example": "<string>"
+            },
+            "description": "(Required) Walmart Service Name"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "accountType": {
+                    "type": "string",
+                    "example": "<string>"
+                  },
+                  "addOns": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "example": "SIGNATURE"
+                    },
+                    "example": [
+                      "SIGNATURE",
+                      "SIGNATURE"
+                    ]
+                  },
+                  "boxDimensions": {
+                    "type": "object",
+                    "properties": {
+                      "boxDimensionUnit": {
+                        "type": "string",
+                        "example": "IN"
+                      },
+                      "boxHeight": {
+                        "type": "string",
+                        "example": "<number>"
+                      },
+                      "boxLength": {
+                        "type": "string",
+                        "example": "<number>"
+                      },
+                      "boxWeight": {
+                        "type": "string",
+                        "example": "<number>"
+                      },
+                      "boxWeightUnit": {
+                        "type": "string",
+                        "example": "OZ"
+                      },
+                      "boxWidth": {
+                        "type": "string",
+                        "example": "<number>"
+                      }
+                    }
+                  },
+                  "boxItems": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "countryOfOrigin": {
+                          "type": "string",
+                          "example": "<string>"
+                        },
+                        "hsCode": {
+                          "type": "string",
+                          "example": "<string>"
+                        },
+                        "lineNumber": {
+                          "type": "string",
+                          "example": "<string>"
+                        },
+                        "originCity": {
+                          "type": "string",
+                          "example": "<string>"
+                        },
+                        "originState": {
+                          "type": "string",
+                          "example": "<string>"
+                        },
+                        "productName": {
+                          "type": "string",
+                          "example": "<string>"
+                        },
+                        "productNameInLocale": {
+                          "type": "string",
+                          "example": "<string>"
+                        },
+                        "quantity": {
+                          "type": "string",
+                          "example": "<integer>"
+                        },
+                        "sku": {
+                          "type": "string",
+                          "example": "<string>"
+                        }
+                      }
+                    },
+                    "example": [
+                      {
+                        "countryOfOrigin": "<string>",
+                        "hsCode": "<string>",
+                        "lineNumber": "<string>",
+                        "originCity": "<string>",
+                        "originState": "<string>",
+                        "productName": "<string>",
+                        "productNameInLocale": "<string>",
+                        "quantity": "<integer>",
+                        "sku": "<string>"
+                      },
+                      {
+                        "countryOfOrigin": "<string>",
+                        "hsCode": "<string>",
+                        "lineNumber": "<string>",
+                        "originCity": "<string>",
+                        "originState": "<string>",
+                        "productName": "<string>",
+                        "productNameInLocale": "<string>",
+                        "quantity": "<integer>",
+                        "sku": "<string>"
+                      }
+                    ]
+                  },
+                  "carrierName": {
+                    "type": "string",
+                    "example": "<string>"
+                  },
+                  "carrierServiceType": {
+                    "type": "string",
+                    "example": "<string>"
+                  },
+                  "fromAddress": {
+                    "type": "object",
+                    "properties": {
+                      "addressLine1": {
+                        "type": "string",
+                        "example": "<string>"
+                      },
+                      "addressLine2": {
+                        "type": "string",
+                        "example": "<string>"
+                      },
+                      "city": {
+                        "type": "string",
+                        "example": "<string>"
+                      },
+                      "companyName": {
+                        "type": "string",
+                        "example": "<string>"
+                      },
+                      "contactName": {
+                        "type": "string",
+                        "example": "<string>"
+                      },
+                      "country": {
+                        "type": "string",
+                        "example": "<string>"
+                      },
+                      "email": {
+                        "type": "string",
+                        "example": "<string>"
+                      },
+                      "phone": {
+                        "type": "string",
+                        "example": "<string>"
+                      },
+                      "postalCode": {
+                        "type": "string",
+                        "example": "<string>"
+                      },
+                      "state": {
+                        "type": "string",
+                        "example": "<string>"
+                      }
+                    }
+                  },
+                  "hasBattery": {
+                    "type": "string",
+                    "example": "<boolean>"
+                  },
+                  "hazmat": {
+                    "type": "string",
+                    "example": "<boolean>"
+                  },
+                  "packageType": {
+                    "type": "string",
+                    "example": "<string>"
+                  },
+                  "purchaseOrderId": {
+                    "type": "string",
+                    "example": "<string>"
+                  },
+                  "returnAddress": {
+                    "type": "object",
+                    "properties": {
+                      "addressLine1": {
+                        "type": "string",
+                        "example": "<string>"
+                      },
+                      "addressLine2": {
+                        "type": "string",
+                        "example": "<string>"
+                      },
+                      "city": {
+                        "type": "string",
+                        "example": "<string>"
+                      },
+                      "contactName": {
+                        "type": "string",
+                        "example": "<string>"
+                      },
+                      "country": {
+                        "type": "string",
+                        "example": "<string>"
+                      },
+                      "email": {
+                        "type": "string",
+                        "example": "<string>"
+                      },
+                      "phone": {
+                        "type": "string",
+                        "example": "<string>"
+                      },
+                      "postalCode": {
+                        "type": "string",
+                        "example": "<string>"
+                      },
+                      "shipNode": {
+                        "type": "string",
+                        "example": "<string>"
+                      },
+                      "state": {
+                        "type": "string",
+                        "example": "<string>"
+                      }
+                    }
+                  }
+                }
+              },
+              "examples": {
+                "Create label": {
+                  "value": {
+                    "accountType": "<string>",
+                    "addOns": [
+                      "SIGNATURE",
+                      "SIGNATURE"
+                    ],
+                    "boxDimensions": {
+                      "boxDimensionUnit": "IN",
+                      "boxHeight": "<number>",
+                      "boxLength": "<number>",
+                      "boxWeight": "<number>",
+                      "boxWeightUnit": "OZ",
+                      "boxWidth": "<number>"
+                    },
+                    "boxItems": [
+                      {
+                        "countryOfOrigin": "<string>",
+                        "hsCode": "<string>",
+                        "lineNumber": "<string>",
+                        "originCity": "<string>",
+                        "originState": "<string>",
+                        "productName": "<string>",
+                        "productNameInLocale": "<string>",
+                        "quantity": "<integer>",
+                        "sku": "<string>"
+                      },
+                      {
+                        "countryOfOrigin": "<string>",
+                        "hsCode": "<string>",
+                        "lineNumber": "<string>",
+                        "originCity": "<string>",
+                        "originState": "<string>",
+                        "productName": "<string>",
+                        "productNameInLocale": "<string>",
+                        "quantity": "<integer>",
+                        "sku": "<string>"
+                      }
+                    ],
+                    "carrierName": "<string>",
+                    "carrierServiceType": "<string>",
+                    "fromAddress": {
+                      "addressLine1": "<string>",
+                      "addressLine2": "<string>",
+                      "city": "<string>",
+                      "companyName": "<string>",
+                      "contactName": "<string>",
+                      "country": "<string>",
+                      "email": "<string>",
+                      "phone": "<string>",
+                      "postalCode": "<string>",
+                      "state": "<string>"
+                    },
+                    "hasBattery": "<boolean>",
+                    "hazmat": "<boolean>",
+                    "packageType": "<string>",
+                    "purchaseOrderId": "<string>",
+                    "returnAddress": {
+                      "addressLine1": "<string>",
+                      "addressLine2": "<string>",
+                      "city": "<string>",
+                      "contactName": "<string>",
+                      "country": "<string>",
+                      "email": "<string>",
+                      "phone": "<string>",
+                      "postalCode": "<string>",
+                      "shipNode": "<string>",
+                      "state": "<string>"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "addOns": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "charge": {
+                                "type": "object",
+                                "properties": {
+                                  "amount": {
+                                    "type": "string",
+                                    "example": "<number>"
+                                  },
+                                  "currency": {
+                                    "type": "string",
+                                    "example": "AZN"
+                                  }
+                                }
+                              },
+                              "declaredValue": {
+                                "type": "object",
+                                "properties": {
+                                  "amount": {
+                                    "type": "string",
+                                    "example": "<number>"
+                                  },
+                                  "currency": {
+                                    "type": "string",
+                                    "example": "NZD"
+                                  }
+                                }
+                              },
+                              "name": {
+                                "type": "string",
+                                "example": "SIGNATURE"
+                              },
+                              "refLink": {
+                                "type": "string",
+                                "example": "<string>"
+                              },
+                              "status": {
+                                "type": "string",
+                                "example": "<string>"
+                              }
+                            }
+                          },
+                          "example": [
+                            {
+                              "charge": {
+                                "amount": "<number>",
+                                "currency": "AZN"
+                              },
+                              "declaredValue": {
+                                "amount": "<number>",
+                                "currency": "NZD"
+                              },
+                              "name": "SIGNATURE",
+                              "refLink": "<string>",
+                              "status": "<string>"
+                            },
+                            {
+                              "charge": {
+                                "amount": "<number>",
+                                "currency": "BBD"
+                              },
+                              "declaredValue": {
+                                "amount": "<number>",
+                                "currency": "HKD"
+                              },
+                              "name": "SIGNATURE",
+                              "refLink": "<string>",
+                              "status": "<string>"
+                            }
+                          ]
+                        },
+                        "boxItems": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "countryOfOrigin": {
+                                "type": "string",
+                                "example": "<string>"
+                              },
+                              "hsCode": {
+                                "type": "string",
+                                "example": "<string>"
+                              },
+                              "lineNumber": {
+                                "type": "string",
+                                "example": "<string>"
+                              },
+                              "originCity": {
+                                "type": "string",
+                                "example": "<string>"
+                              },
+                              "originState": {
+                                "type": "string",
+                                "example": "<string>"
+                              },
+                              "productName": {
+                                "type": "string",
+                                "example": "<string>"
+                              },
+                              "productNameInLocale": {
+                                "type": "string",
+                                "example": "<string>"
+                              },
+                              "quantity": {
+                                "type": "string",
+                                "example": "<integer>"
+                              },
+                              "sku": {
+                                "type": "string",
+                                "example": "<string>"
+                              }
+                            }
+                          },
+                          "example": [
+                            {
+                              "countryOfOrigin": "<string>",
+                              "hsCode": "<string>",
+                              "lineNumber": "<string>",
+                              "originCity": "<string>",
+                              "originState": "<string>",
+                              "productName": "<string>",
+                              "productNameInLocale": "<string>",
+                              "quantity": "<integer>",
+                              "sku": "<string>"
+                            },
+                            {
+                              "countryOfOrigin": "<string>",
+                              "hsCode": "<string>",
+                              "lineNumber": "<string>",
+                              "originCity": "<string>",
+                              "originState": "<string>",
+                              "productName": "<string>",
+                              "productNameInLocale": "<string>",
+                              "quantity": "<integer>",
+                              "sku": "<string>"
+                            }
+                          ]
+                        },
+                        "carrierFullName": {
+                          "type": "string",
+                          "example": "<string>"
+                        },
+                        "carrierName": {
+                          "type": "string",
+                          "example": "<string>"
+                        },
+                        "carrierServiceType": {
+                          "type": "string",
+                          "example": "<string>"
+                        },
+                        "purchaseOrderId": {
+                          "type": "string",
+                          "example": "<string>"
+                        },
+                        "trackingNo": {
+                          "type": "string",
+                          "example": "<string>"
+                        },
+                        "trackingUrl": {
+                          "type": "string",
+                          "example": "<string>"
+                        }
+                      }
+                    },
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "category": {
+                            "type": "string",
+                            "example": "REQUEST"
+                          },
+                          "code": {
+                            "type": "string",
+                            "example": "<string>"
+                          },
+                          "description": {
+                            "type": "string",
+                            "example": "<string>"
+                          },
+                          "field": {
+                            "type": "string",
+                            "example": "<string>"
+                          },
+                          "httpStatus": {
+                            "type": "string",
+                            "example": "<integer>"
+                          },
+                          "info": {
+                            "type": "string",
+                            "example": "<string>"
+                          },
+                          "severity": {
+                            "type": "string",
+                            "example": "CRITICAL"
+                          }
+                        }
+                      },
+                      "example": [
+                        {
+                          "category": "REQUEST",
+                          "code": "<string>",
+                          "description": "<string>",
+                          "field": "<string>",
+                          "httpStatus": "<integer>",
+                          "info": "<string>",
+                          "severity": "CRITICAL"
+                        },
+                        {
+                          "category": "SERVICE",
+                          "code": "<string>",
+                          "description": "<string>",
+                          "field": "<string>",
+                          "httpStatus": "<integer>",
+                          "info": "<string>",
+                          "severity": "ALERT"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "Successful Operation": {
+                    "value": {
+                      "data": {
+                        "addOns": [
+                          {
+                            "charge": {
+                              "amount": "<number>",
+                              "currency": "AZN"
+                            },
+                            "declaredValue": {
+                              "amount": "<number>",
+                              "currency": "NZD"
+                            },
+                            "name": "SIGNATURE",
+                            "refLink": "<string>",
+                            "status": "<string>"
+                          },
+                          {
+                            "charge": {
+                              "amount": "<number>",
+                              "currency": "BBD"
+                            },
+                            "declaredValue": {
+                              "amount": "<number>",
+                              "currency": "HKD"
+                            },
+                            "name": "SIGNATURE",
+                            "refLink": "<string>",
+                            "status": "<string>"
+                          }
+                        ],
+                        "boxItems": [
+                          {
+                            "countryOfOrigin": "<string>",
+                            "hsCode": "<string>",
+                            "lineNumber": "<string>",
+                            "originCity": "<string>",
+                            "originState": "<string>",
+                            "productName": "<string>",
+                            "productNameInLocale": "<string>",
+                            "quantity": "<integer>",
+                            "sku": "<string>"
+                          },
+                          {
+                            "countryOfOrigin": "<string>",
+                            "hsCode": "<string>",
+                            "lineNumber": "<string>",
+                            "originCity": "<string>",
+                            "originState": "<string>",
+                            "productName": "<string>",
+                            "productNameInLocale": "<string>",
+                            "quantity": "<integer>",
+                            "sku": "<string>"
+                          }
+                        ],
+                        "carrierFullName": "<string>",
+                        "carrierName": "<string>",
+                        "carrierServiceType": "<string>",
+                        "purchaseOrderId": "<string>",
+                        "trackingNo": "<string>",
+                        "trackingUrl": "<string>"
+                      },
+                      "errors": [
+                        {
+                          "category": "REQUEST",
+                          "code": "<string>",
+                          "description": "<string>",
+                          "field": "<string>",
+                          "httpStatus": "<integer>",
+                          "info": "<string>",
+                          "severity": "CRITICAL"
+                        },
+                        {
+                          "category": "SERVICE",
+                          "code": "<string>",
+                          "description": "<string>",
+                          "field": "<string>",
+                          "httpStatus": "<integer>",
+                          "info": "<string>",
+                          "severity": "ALERT"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "v3"
+    },
+    {
+      "name": "shipping"
+    },
+    {
+      "name": "labels"
+    },
+    {
+      "name": "shipping-estimates"
+    },
+    {
+      "name": "purchase-orders"
+    },
+    {
+      "name": "{purchaseOrderId}"
+    },
+    {
+      "name": "carriers"
+    },
+    {
+      "name": "{carrierShortName}"
+    },
+    {
+      "name": "trackings"
+    },
+    {
+      "name": "{trackingNo}"
+    },
+    {
+      "name": "package-types"
+    }
+  ]
+}

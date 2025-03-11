@@ -109,6 +109,11 @@
         "code": "rules",
         "countries": ["us"]
       },
+      "shipping": {
+        "name": "Shipping",
+        "code": "shipping",
+        "countries": ["us"]
+      },
       "settings": {
         "name": "Settings",
         "code": "settings",
